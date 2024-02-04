@@ -1,8 +1,9 @@
+# Description: Core Crawler Engine for PyCrawler.
+
+# Import python modules
 import logging
 import requests
 from urllib.parse import urlparse
-
-from .url_manager import URLManager
 
 
 class CrawlerEngine:
@@ -17,11 +18,13 @@ class CrawlerEngine:
         logger (logging.Logger): Logger for the crawler engine.
     """
 
-    def __init__(self):
+    def __init__(self, url_manager, data_extractor):
         """
         Initializes the Crawler Engine with necessary configurations.
         """
         self.logger = logging.getLogger("PyCrawler.CrawlerEngine")
+        self.url_manager = url_manager
+        self.data_extractor = data_extractor
         # Initialize additional necessary attributes
 
     def fetch_url(self, url_manager):
@@ -39,7 +42,7 @@ class CrawlerEngine:
         # Placeholder for fetching a URL from the URL Manager
         # Example: url = url_manager.get_next_url()
         try:
-            url = url_manager.get_next_url()
+            url = self.url_manager.get_next_url()
             return url
         except Exception as e:
             self.logger.error(f"Error fetching URL from URL Manager: {e}")
