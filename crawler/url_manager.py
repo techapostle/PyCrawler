@@ -5,6 +5,10 @@ class URLManager:
     This class is responsible for maintaining a list of URLs to be crawled,
     adding new URLs, and providing the next URL to the crawler while ensuring
     there are no duplicates.
+
+    Attributes:
+        to_crawl (set): Set of URLs to be crawled.
+        crawled (set): Set of URLs already crawled.
     """
 
     def __init__(self):
