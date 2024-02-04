@@ -36,7 +36,12 @@ class CrawlerEngine:
         """
         # Placeholder for fetching a URL from the URL Manager
         # Example: url = url_manager.get_next_url()
-        return None
+        try:
+            url = url_manager.get_next_url()
+            return url
+        except Exception as e:
+            self.logger.error(f"Error fetching URL from URL Manager: {e}")
+            return None
 
     def process_url(self, url):
         """
@@ -55,9 +60,15 @@ class CrawlerEngine:
             response = requests.get(url)
             response.raise_for_status()
             return response.text
+        except requests.HTTPError as e:
+            self.logger.error(f"HTTP error fetching URL {url}: {e}")
+        except requests.ConnectionError as e:
+            self.logger.error(f"Connection error fetching URL {url}: {e}")
+        except requests.Timeout as e:
+            self.logger.error(f"Timeout error fetching URL {url}: {e}")
         except requests.RequestException as e:
             self.logger.error(f"Error fetching URL {url}: {e}")
-            return None
+        return None
 
     def handle_data(self, data):
         """
@@ -69,6 +80,7 @@ class CrawlerEngine:
         Args:
             data (str): The extracted data to handle.
         """
+        processed_data = self.data_extractor.extract_data(data)
         # Placeholder for handling the extracted data
         # Example: storage_module.store(data)
         pass
