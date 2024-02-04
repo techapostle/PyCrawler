@@ -14,6 +14,9 @@ class URLManager:
     def __init__(self):
         """
         Initializes the URL Manager with necessary data structures.
+
+        This method initializes the URL Manager with an empty set for URLs to be
+        crawled and an empty set for URLs already crawled.
         """
         self.to_crawl = set()
         self.crawled = set()
