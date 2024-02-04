@@ -2,6 +2,8 @@ import logging
 import requests
 from urllib.parse import urlparse
 
+from .url_manager import URLManager
+
 
 class CrawlerEngine:
     """
