@@ -27,7 +27,7 @@ class CrawlerEngine:
         self.data_extractor = data_extractor
         # Initialize additional necessary attributes
 
-    def fetch_url(self, url_manager):
+    def fetch_url(self):
         """
         Fetches a URL from the URL Manager.
 
